@@ -6,14 +6,23 @@ A side-scrolling jetpack game built for Ananth, using his own caricature as the 
 
 ## How to play
 
-Hold the mouse, tap and hold on a touchscreen, or hold **Space** to fire the jetpack.
-Let go to drop. Dodge the electric beams and the missiles, and collect bolts.
+Enter a pilot name, pick a map, then hold the mouse, tap and hold on a touchscreen,
+or hold **Space** to fire the jetpack. Let go to drop. Dodge the electric beams and
+the missiles, and collect bolts.
 
 ## What's in it
 
-- **Levels** — start at Level 0 and climb through Warm-Up, Service Tunnel, Lower Lab,
-  Coolant Line, Reactor Row, Test Range, Black Sector, Overdrive and Meltdown. Each
-  level raises the speed, the hazard density and the music.
+- **Five maps** — Sector 7 Lab, Neon City, Cryo Vault, Magma Core and Orbital Ring.
+  Each one is a full re-skin: its own wall colours, parallax scenery (rain and lit
+  windows, stalactites and frost, basalt and embers, a starfield and a passing
+  planet) and its own nine level names. Pick one on the start screen, or flick
+  through them with the arrow keys — the menu backdrop previews the choice live.
+  Every gameplay number is identical across maps, so the scores stay comparable.
+- **Levels** — start at Level 0 and climb through nine of them. Each level raises
+  the speed, the hazard density and the music.
+- **Leaderboard** — a top ten per map, kept in the browser's local storage. Any run
+  that makes the cut is recorded straight away, and the crash card invites you to
+  name it. Nothing leaves the device, so the board is per-browser.
 - **Power-ups** — Shield (earned with 30 bolts, 15 seconds of flying through anything),
   Magnet (pulls every coin on screen), 2x Bolts, and Slip-Mo (slows the world down).
 - **Seven original soundtracks** — five that swap as the levels climb, plus two that take
@@ -27,6 +36,10 @@ Everything is in a single `index.html` — no build step, no dependencies, no se
 The character artwork and the voice clip are embedded as data URIs, so the page is
 completely self-contained. The whole soundtrack is synthesised at runtime with the Web
 Audio API using a lookahead scheduler.
+
+A map is pure data: colour tokens plus one `deco()` function that draws its
+mid-ground parallax band. `drawBackground()` and `drawStructure()` read those tokens,
+so adding a sixth map means adding one entry to `MAPS`.
 
 Rendering is HTML5 canvas. The game scales off the smaller screen dimension, so it plays
 the same on a phone as on a desktop.

@@ -187,11 +187,165 @@
   .play:active{transform:translateY(4px);box-shadow:0 1px 0 #a8410f,0 8px 20px rgba(255,122,47,.28);}
   .play:focus-visible{outline:3px solid var(--volt);outline-offset:3px;}
 
+  /* ---------- Pilot name ---------- */
+  .namerow{
+    display:flex;flex-direction:column;align-items:center;gap:6px;
+    width:min(340px,100%);
+  }
+  .namelab{
+    font-size:10px;letter-spacing:.26em;text-transform:uppercase;
+    color:var(--dim);font-weight:700;
+  }
+  .nameinput{
+    width:100%;box-sizing:border-box;
+    font-family:"Bungee",ui-sans-serif,system-ui,sans-serif;
+    font-size:17px;letter-spacing:.06em;text-align:center;text-transform:uppercase;
+    color:var(--bone);
+    background:rgba(10,13,20,.66);
+    border:1px solid rgba(255,255,255,.2);
+    border-radius:9px;padding:11px 12px;
+    transition:border-color .12s ease, box-shadow .12s ease;
+  }
+  .nameinput::placeholder{
+    font-family:"Chakra Petch",ui-sans-serif,system-ui,sans-serif;
+    font-size:13px;letter-spacing:.1em;color:var(--dim);text-transform:none;
+  }
+  .nameinput:focus{
+    outline:none;border-color:var(--ember);
+    box-shadow:0 0 0 3px rgba(255,194,74,.18);
+  }
+  .nameinput.warn{
+    border-color:var(--danger);
+    box-shadow:0 0 0 3px rgba(255,58,94,.2);
+  }
+  .namehint{
+    margin:0;font-size:11px;letter-spacing:.08em;color:var(--danger);font-weight:700;
+  }
+  .play:disabled{
+    opacity:.42;cursor:not-allowed;
+    box-shadow:0 5px 0 #a8410f;
+  }
+  .play:disabled:active{transform:none;}
+
+  /* ---------- Leaderboard ---------- */
+  .boardh{
+    font-family:"Bungee",ui-sans-serif,system-ui,sans-serif;
+    font-weight:400;margin:0;font-size:clamp(24px,7vw,34px);
+    color:var(--bone);line-height:1;
+  }
+  .boardtabs{display:flex;gap:6px;flex-wrap:wrap;justify-content:center;}
+  .tab{
+    border:1px solid rgba(255,255,255,.18);background:transparent;color:var(--dim);
+    font-family:inherit;font-weight:700;font-size:10px;letter-spacing:.08em;
+    padding:6px 9px;border-radius:6px;cursor:pointer;text-transform:uppercase;
+  }
+  .tab:hover{color:var(--bone);border-color:rgba(255,255,255,.4);}
+  .tab.on{color:#180a02;background:var(--ember);border-color:var(--ember);}
+  .tab:focus-visible{outline:2px solid var(--volt);outline-offset:2px;}
+  .board{
+    list-style:none;margin:0;padding:0;width:min(400px,100%);
+    display:flex;flex-direction:column;gap:3px;
+  }
+  .board li{
+    display:grid;grid-template-columns:22px 1fr auto auto;gap:10px;align-items:center;
+    padding:7px 10px;border-radius:7px;text-align:left;
+    background:rgba(21,28,40,.66);
+    border:1px solid rgba(255,255,255,.08);
+    font-size:12px;letter-spacing:.03em;
+  }
+  .board li .rk{color:var(--dim);font-weight:700;text-align:right;}
+  .board li .nm{
+    font-weight:700;color:var(--bone);
+    overflow:hidden;text-overflow:ellipsis;white-space:nowrap;
+  }
+  .board li .ct{color:var(--gold);font-size:11px;}
+  .board li .ds{color:var(--volt);font-weight:700;}
+  .board li.top .rk{color:var(--ember);}
+  .board li.you{border-color:var(--ember);background:rgba(255,194,74,.10);}
+  .boardempty{
+    color:var(--dim);font-size:12px;letter-spacing:.06em;
+    padding:20px 0;margin:0;
+  }
+
+  /* name prompt on the crash card */
+  .lbsave{
+    display:flex;flex-direction:column;align-items:center;gap:8px;
+    width:min(340px,100%);
+    border:1px dashed rgba(255,194,74,.45);
+    background:rgba(255,194,74,.07);
+    border-radius:12px;padding:12px;
+  }
+  .lbsave-k{
+    margin:0;font-size:11px;letter-spacing:.16em;text-transform:uppercase;
+    color:var(--ember);font-weight:700;
+  }
+  .lbsave-row{display:flex;gap:8px;width:100%;}
+  .lbsave-row .nameinput{flex:1;font-size:15px;padding:9px 10px;}
+  .lbsaved{
+    margin:0;font-size:11px;letter-spacing:.1em;color:var(--volt);font-weight:700;
+  }
+
+  /* ---------- Map picker ---------- */
+  .maplabel{
+    font-size:10px;letter-spacing:.26em;text-transform:uppercase;
+    color:var(--dim);font-weight:700;margin-bottom:-8px;
+  }
+  .maps{
+    display:flex;gap:8px;flex-wrap:wrap;justify-content:center;
+    width:min(460px,100%);
+  }
+  .mapcard{
+    flex:1 1 82px;min-width:82px;
+    border:1px solid rgba(255,255,255,.16);
+    background:rgba(21,28,40,.7);
+    border-radius:10px;padding:0;overflow:hidden;cursor:pointer;
+    font-family:inherit;color:var(--bone);text-align:center;
+    transition:border-color .12s ease, transform .12s ease, box-shadow .12s ease;
+  }
+  .mapcard:hover{border-color:rgba(255,255,255,.42);transform:translateY(-2px);}
+  .mapcard.on{
+    border-color:var(--ma);
+    box-shadow:0 0 0 1px var(--ma),0 6px 18px rgba(0,0,0,.45);
+  }
+  .mapcard:focus-visible{outline:2px solid var(--volt);outline-offset:2px;}
+  .mapcard .swatch{
+    display:block;height:32px;position:relative;
+    background:linear-gradient(160deg,var(--m1),var(--m2));
+    border-bottom:1px solid rgba(255,255,255,.10);
+  }
+  .mapcard .swatch::after{
+    content:'';position:absolute;inset:auto 0 0 0;height:12px;
+    background:linear-gradient(0deg,var(--ma),transparent);opacity:.85;
+  }
+  .mapcard .mname{
+    display:block;font-size:9.5px;font-weight:700;letter-spacing:.07em;
+    padding:6px 3px 2px;line-height:1.25;
+  }
+  .mapcard .mbest{
+    display:block;font-size:9px;color:var(--dim);
+    padding:0 3px 6px;letter-spacing:.05em;
+  }
+  .mapcard.on .mbest{color:var(--ma);}
+  .maprec{
+    margin:-10px 0 0;font-size:11px;letter-spacing:.12em;
+    color:var(--volt);font-weight:700;min-height:1.3em;
+  }
+  .maptag{
+    margin:0;color:var(--dim);font-size:12px;line-height:1.5;
+    letter-spacing:.04em;min-height:1.5em;
+  }
+  .overbtns{display:flex;gap:10px;align-items:center;justify-content:center;flex-wrap:wrap;}
+
   .keys{
     display:flex;gap:18px;flex-wrap:wrap;justify-content:center;
     color:var(--dim);font-size:12px;letter-spacing:.06em;
   }
   .keys b{color:var(--bone);font-weight:700;}
+
+  .pilot{
+    margin:0;font-size:12px;letter-spacing:.2em;text-transform:uppercase;
+    color:var(--ember);font-weight:700;
+  }
 
   /* game over */
   .boom{
@@ -252,6 +406,7 @@
       <span class="k">Distance</span>
       <span class="v"><span id="hDist">0</span>m</span>
       <span class="chip lvl" id="hLevel">LEVEL 0</span>
+      <span class="chip" id="hName" hidden></span>
     </div>
     <div class="readout coins">
       <span class="k">Bolts</span>
@@ -287,13 +442,39 @@
         </div>
       </div>
 
+      <div class="namerow">
+        <label class="namelab" for="nameInput">Pilot name</label>
+        <input id="nameInput" class="nameinput" type="text" maxlength="14"
+               placeholder="Type your name" autocomplete="off" spellcheck="false"
+               aria-describedby="nameHint">
+      </div>
+      <p class="namehint" id="nameHint" hidden>Enter a name to launch.</p>
+
+      <span class="maplabel">Choose your map</span>
+      <div class="maps" id="mapPicker" role="radiogroup" aria-label="Choose a map"></div>
+      <p class="maptag" id="mapTag"></p>
+      <p class="maprec" id="mapRec"></p>
+
       <button class="play" id="playBtn" type="button">LAUNCH</button>
+      <button class="mini" id="boardBtn" type="button">Leaderboard</button>
 
       <div class="keys">
         <span><b>Hold mouse</b> fly up</span>
         <span><b>Release</b> fall</span>
         <span><b>Space</b> also works</span>
+        <span><b>&#8592; &#8594;</b> switch map</span>
       </div>
+    </div>
+  </div>
+
+  <div id="boardScreen" class="overlay" hidden>
+    <div class="plate">
+      <span class="eyebrow">Hall of fame</span>
+      <h2 class="boardh" id="boardTitle">LEADERBOARD</h2>
+      <div class="boardtabs" id="boardTabs" role="tablist" aria-label="Leaderboard map"></div>
+      <ol class="board" id="boardList"></ol>
+      <p class="boardempty" id="boardEmpty" hidden>No runs logged on this map yet.</p>
+      <button class="play" id="boardBack" type="button">BACK</button>
     </div>
   </div>
 
@@ -301,14 +482,29 @@
     <div class="plate">
       <canvas id="faceCv" width="360" height="360" aria-label="Ananth mid-crash"></canvas>
       <p class="boom" id="boomText">FAAHH!!</p>
+      <p class="pilot" id="oPilot"></p>
       <p class="quip" id="quip">The jetpack disagreed with that decision.</p>
       <div class="stats">
         <div class="stat"><div class="k">Distance</div><div class="v"><span id="oDist">0</span>m</div></div>
         <div class="stat coin"><div class="k">Bolts</div><div class="v" id="oCoins">0</div></div>
-        <div class="stat best"><div class="k">Best</div><div class="v"><span id="oBest">0</span>m</div></div>
+        <div class="stat best"><div class="k" id="oBestK">Best</div><div class="v"><span id="oBest">0</span>m</div></div>
       </div>
       <span id="newBest" hidden>New record</span>
-      <button class="play" id="againBtn" type="button">GO AGAIN</button>
+      <div class="lbsave" id="lbSave" hidden>
+        <p class="lbsave-k" id="lbSaveK">Top 10 run &#183; name it</p>
+        <div class="lbsave-row">
+          <input id="lbName" class="nameinput" type="text" maxlength="14"
+                 autocomplete="off" spellcheck="false" aria-label="Name for the leaderboard">
+          <button class="mini" id="lbSaveBtn" type="button">Save</button>
+        </div>
+        <p class="lbsaved" id="lbSaved" hidden>Saved.</p>
+      </div>
+
+      <div class="overbtns">
+        <button class="play" id="againBtn" type="button">GO AGAIN</button>
+        <button class="mini" id="boardBtn2" type="button">Leaderboard</button>
+        <button class="mini" id="mapBtn" type="button">Change map</button>
+      </div>
       <div class="keys"><span><b>Space</b> or click to retry</span></div>
     </div>
   </div>
@@ -350,13 +546,93 @@ var oCoins= document.getElementById('oCoins');
 var oBest = document.getElementById('oBest');
 var newBest = document.getElementById('newBest');
 var quipEl  = document.getElementById('quip');
+var nameInput = document.getElementById('nameInput');
+var nameHint  = document.getElementById('nameHint');
+var hName     = document.getElementById('hName');
+var oPilot    = document.getElementById('oPilot');
+var boardScreen = document.getElementById('boardScreen');
+var boardTitle= document.getElementById('boardTitle');
+var boardTabs = document.getElementById('boardTabs');
+var boardList = document.getElementById('boardList');
+var boardEmpty= document.getElementById('boardEmpty');
+var boardBack = document.getElementById('boardBack');
+var boardBtn  = document.getElementById('boardBtn');
+var boardBtn2 = document.getElementById('boardBtn2');
+var lbSave    = document.getElementById('lbSave');
+var lbSaveK   = document.getElementById('lbSaveK');
+var lbName    = document.getElementById('lbName');
+var lbSaveBtn = document.getElementById('lbSaveBtn');
+var lbSaved   = document.getElementById('lbSaved');
+var mapPicker = document.getElementById('mapPicker');
+var mapTag  = document.getElementById('mapTag');
+var mapRec  = document.getElementById('mapRec');
+var mapBtn  = document.getElementById('mapBtn');
+var oBestK  = document.getElementById('oBestK');
 
 var W = 800, H = 600, S = 1, ground = 500, roof = 50;
 
 function lsGet(k){ try { return localStorage.getItem(k); } catch(e){ return null; } }
 function lsSet(k,v){ try { localStorage.setItem(k,v); } catch(e){} }
 
-var best = parseInt(lsGet('ananthRush.best') || '0', 10) || 0;
+/* Best distance is tracked per map: the maps are cosmetically different but
+   mechanically identical, so the scores stay comparable and each one is worth
+   chasing on its own. `best` always mirrors the selected map. */
+/* Each map keeps its own top ten in localStorage, and that table is the single
+   source of truth - the "best" for a map is simply row one. Nothing leaves the
+   browser, so the board is per-device. */
+var LB_MAX = 10;
+function lbKey(id){ return 'ananthRush.lb.' + id; }
+function lbGet(id){
+  var a;
+  try { a = JSON.parse(lsGet(lbKey(id)) || '[]'); } catch(e){ return []; }
+  if (Object.prototype.toString.call(a) !== '[object Array]') return [];
+  /* Sort and trim on the way out, not just on the way in: this store is
+     hand-editable and the hot-reload import writes rows we never sorted. */
+  var rows = [];
+  for (var i = 0; i < a.length; i++){
+    var r = a[i];
+    if (!r || typeof r.m !== 'number' || !isFinite(r.m) || r.m < 0) continue;
+    rows.push({ n: cleanName(r.n) || 'ANON',
+                m: Math.floor(r.m),
+                c: Math.max(0, parseInt(r.c, 10) || 0),
+                t: parseInt(r.t, 10) || 0 });
+  }
+  rows.sort(function(x, y){ return (y.m - x.m) || (x.t - y.t); });
+  return rows.slice(0, LB_MAX);
+}
+function lbSet(id, rows){ lsSet(lbKey(id), JSON.stringify(rows.slice(0, LB_MAX))); }
+function lbQualifies(id, m){
+  if (!(m > 0)) return false;
+  var rows = lbGet(id);
+  return rows.length < LB_MAX || m > rows[rows.length - 1].m;
+}
+/* Returns the row's final position, or -1 if it did not make the cut. */
+function lbAdd(id, name, m, c){
+  var rows = lbGet(id);
+  var entry = { n: name, m: m, c: c, t: Date.now() };
+  rows.push(entry);
+  rows.sort(function(a, b){ return (b.m - a.m) || (a.t - b.t); });
+  rows = rows.slice(0, LB_MAX);
+  lbSet(id, rows);
+  return rows.indexOf(entry);
+}
+/* Legacy single-score keys, read once at boot and then left alone. */
+function bestKey(id){ return 'ananthRush.best.' + id; }
+function byKey(id){ return 'ananthRush.bestBy.' + id; }
+function bestFor(id){ var r = lbGet(id); return r.length ? r[0].m : 0; }
+function bestByFor(id){ var r = lbGet(id); return r.length ? (r[0].n || '') : ''; }
+var best = 0;
+/* Where the run just finished landed on the board, so the card can name it
+   and the board can highlight it. */
+var lbRow = -1, lbRowMap = '';
+
+/* The pilot in the artwork is always Ananth; this is whoever is holding the
+   controls. It is required before the first launch, then remembered, so it
+   costs a returning player nothing. Records store the name that set them. */
+var playerName = '';
+function cleanName(v){
+  return String(v || '').replace(/\s+/g, ' ').trim().slice(0, 14);
+}
 var muted = lsGet('ananthRush.muted') === '1';
 
 /* ------------------------------------------------------------------ *
@@ -816,15 +1092,13 @@ var DROP_KINDS = ['magnet','double','slow'];
    Early levels land fast so the first few rewards come quickly, then each one
    asks a little more - the standard endless-runner ramp. */
 var level = 0, levelFlash = 0, levelName = '', levelTrackMsg = '';
-var LEVEL_TITLES = ['WARM-UP','SERVICE TUNNEL','LOWER LAB','COOLANT LINE','REACTOR ROW',
-                    'TEST RANGE','BLACK SECTOR','OVERDRIVE','MELTDOWN'];
 function levelThreshold(n){ return 125*n + 25*n*n; }
 function levelForMeters(m){
   var n = 0;
   while (n < 40 && m >= levelThreshold(n+1)) n++;
   return n;
 }
-function levelTitle(n){ return LEVEL_TITLES[Math.min(n, LEVEL_TITLES.length-1)]; }
+function levelTitle(n){ var t = MAP.levels; return t[Math.min(n, t.length-1)]; }
 var bolts2shield = 0, shieldQueued = false;
 var popups = [];
 var coins = [], zappers = [], missiles = [], warns = [], shields = [], parts = [];
@@ -861,7 +1135,175 @@ function reset(){
   speed = 330 * S;
 }
 
+/* ------------------------------------------------------------------ *
+ *  Pilot name
+ * ------------------------------------------------------------------ */
+function syncName(){
+  playerName = cleanName(nameInput.value);
+  lsSet('ananthRush.name', playerName);
+  playBtn.disabled = !playerName;
+  if (playerName){
+    nameHint.hidden = true;
+    nameInput.classList.remove('warn');
+  }
+  hName.textContent = playerName;
+  hName.hidden = !playerName;
+}
+
+/* Called when something tries to launch without a name: point at the field
+   rather than silently doing nothing. */
+function nudgeName(){
+  nameHint.hidden = false;
+  nameInput.classList.add('warn');
+  try { nameInput.focus(); nameInput.select(); } catch(e){}
+}
+
+function canLaunch(){
+  if (playerName) return true;
+  nudgeName();
+  return false;
+}
+
+/* ------------------------------------------------------------------ *
+ *  Leaderboard screen
+ * ------------------------------------------------------------------ */
+var boardMapIdx = 0, boardFrom = 'menu';
+
+function openBoard(){
+  boardFrom = overScreen.hidden ? 'menu' : 'over';
+  startScreen.hidden = true;
+  overScreen.hidden = true;
+  boardScreen.hidden = false;
+  boardMapIdx = mapIdx;
+  renderBoard();
+}
+function closeBoard(){
+  boardScreen.hidden = true;
+  if (boardFrom === 'over') overScreen.hidden = false;
+  else { startScreen.hidden = false; selectMap(mapIdx); }
+}
+
+function renderBoard(){
+  var m = MAPS[boardMapIdx];
+  boardTitle.textContent = m.name;
+
+  boardTabs.innerHTML = '';
+  for (var i = 0; i < MAPS.length; i++) boardTabs.appendChild(boardTab(MAPS[i], i));
+
+  var rows = lbGet(m.id);
+  boardList.innerHTML = '';
+  boardEmpty.hidden = rows.length > 0;
+  for (var r = 0; r < rows.length; r++){
+    boardList.appendChild(boardRow(rows[r], r, m.id));
+  }
+}
+
+function boardTab(m, i){
+  var b = document.createElement('button');
+  b.type = 'button';
+  b.className = 'tab' + (i === boardMapIdx ? ' on' : '');
+  b.setAttribute('role', 'tab');
+  b.setAttribute('aria-selected', i === boardMapIdx ? 'true' : 'false');
+  b.textContent = m.name;
+  b.addEventListener('click', function(e){
+    e.stopPropagation(); boardMapIdx = i; renderBoard();
+  });
+  return b;
+}
+
+function boardRow(row, r, mapId){
+  var li = document.createElement('li');
+  var cls = r === 0 ? 'top' : '';
+  if (mapId === lbRowMap && r === lbRow) cls += ' you';
+  li.className = cls;
+  function cell(c, txt){
+    var sp = document.createElement('span');
+    sp.className = c; sp.textContent = txt;
+    li.appendChild(sp);
+  }
+  cell('rk', (r + 1) + '');
+  cell('nm', row.n || 'ANON');
+  cell('ct', (row.c || 0) + ' bolts');
+  cell('ds', (row.m || 0) + 'm');
+  return li;
+}
+
+/* The player can correct the name attached to the run that just landed. */
+function saveLbName(){
+  var n = cleanName(lbName.value);
+  if (!n){ try { lbName.focus(); } catch(e){} return; }
+  nameInput.value = n;
+  syncName();
+  if (lbRow >= 0){
+    var rows = lbGet(lbRowMap);
+    if (rows[lbRow]){ rows[lbRow].n = playerName; lbSet(lbRowMap, rows); }
+  }
+  oPilot.textContent = playerName + ' \u00b7 ' + MAP.name;
+  lbSaved.hidden = false;
+  try { lbName.blur(); } catch(e){}
+}
+
+/* ------------------------------------------------------------------ *
+ *  Map selection
+ * ------------------------------------------------------------------ */
+/* Selecting a map re-skins the menu backdrop immediately - the canvas keeps
+   rendering behind the overlay, so the picker doubles as a live preview. */
+function selectMap(i){
+  mapIdx = Math.max(0, Math.min(MAPS.length - 1, i));
+  MAP = MAPS[mapIdx];
+  lsSet('ananthRush.map', MAP.id);
+  best = bestFor(MAP.id);
+  hBest.textContent = best;
+  mapTag.textContent = MAP.tag;
+  var by = bestByFor(MAP.id);
+  mapRec.textContent = best ? ('Record ' + best + 'm' + (by ? ' \u00b7 ' + by : ''))
+                            : 'No record yet';
+  buildMapPicker();
+}
+
+function buildMapPicker(){
+  mapPicker.innerHTML = '';
+  for (var i = 0; i < MAPS.length; i++){
+    mapPicker.appendChild(mapCard(MAPS[i], i));
+  }
+}
+
+function mapCard(m, i){
+  var on = (i === mapIdx);
+  var b = document.createElement('button');
+  b.type = 'button';
+  b.className = 'mapcard' + (on ? ' on' : '');
+  b.setAttribute('role', 'radio');
+  b.setAttribute('aria-checked', on ? 'true' : 'false');
+  b.style.setProperty('--m1', m.wall[0]);
+  b.style.setProperty('--m2', m.wall[2]);
+  b.style.setProperty('--ma', m.pick);
+
+  var sw = document.createElement('span'); sw.className = 'swatch';
+  var nm = document.createElement('span'); nm.className = 'mname';
+  nm.textContent = m.name;
+  var bs = document.createElement('span'); bs.className = 'mbest';
+  var rec = bestFor(m.id);
+  bs.textContent = rec ? rec + 'm' : 'unflown';
+  b.appendChild(sw); b.appendChild(nm); b.appendChild(bs);
+
+  b.addEventListener('click', function(e){ e.stopPropagation(); selectMap(i); });
+  return b;
+}
+
+/* Back to the menu from the crash card, with the world cleared so the
+   backdrop behind the picker is calm rather than mid-explosion. */
+function toMenu(){
+  reset();
+  state = MENU;
+  overScreen.hidden = true;
+  hud.hidden = true;
+  startScreen.hidden = false;
+  selectMap(mapIdx);        // re-reads the board so the record line is current
+}
+
 function startGame(){
+  if (!canLaunch()) return;
   initAudio(); resumeAudio();
   reset();
   state = PLAY;
@@ -888,12 +1330,26 @@ function finishDeath(){
   state = DEAD;
   var m = Math.floor(meters);
   var record = m > best;
-  if (record){ best = m; lsSet('ananthRush.best', String(best)); }
+  /* A qualifying run is written to the board immediately under the remembered
+     name, then the card invites the player to correct it. Recording first
+     means a score is never lost by ignoring the prompt. */
+  lbRow = -1; lbRowMap = MAP.id;
+  if (lbQualifies(MAP.id, m)) lbRow = lbAdd(MAP.id, playerName, m, coinCount);
+  best = bestFor(MAP.id);
+  lbSave.hidden = (lbRow < 0);
+  if (lbRow >= 0){
+    lbSaved.hidden = true;
+    lbName.value = playerName;
+    lbSaveK.textContent = lbRow === 0 ? 'New #1 \u00b7 name this run'
+                                      : ('Top 10 \u00b7 #' + (lbRow + 1) + ' \u00b7 name this run');
+  }
+  oPilot.textContent = playerName + ' \u00b7 ' + MAP.name;
   oDist.textContent = m;
   oCoins.textContent = coinCount;
   oBest.textContent = best;
+  oBestK.textContent = 'Best · ' + MAP.name;
   newBest.hidden = !record;
-  quipEl.textContent = record ? 'New personal best. Ananth is unstoppable (briefly).'
+  quipEl.textContent = record ? (playerName + ' flew that one. Ananth is unstoppable (briefly).')
                               : QUIPS[Math.floor(Math.random()*QUIPS.length)];
   overScreen.hidden = false;
   hud.hidden = true;
@@ -1461,28 +1917,34 @@ function rrect(x,y,w,h,r){
   ctx.closePath();
 }
 
-function drawBackground(){
-  // deep wall
-  var g = ctx.createLinearGradient(0, roof, 0, ground);
-  g.addColorStop(0, '#111a26');
-  g.addColorStop(0.5, '#0d141e');
-  g.addColorStop(1, '#0a1119');
-  ctx.fillStyle = g;
-  ctx.fillRect(0, 0, W, H);
+/* ------------------------------------------------------------------ *
+ *  Maps
+ * ------------------------------------------------------------------ *
+ *  A map is a full re-skin, not a difficulty setting: the wall gradient,
+ *  the slab colours, the parallax decor and the nine level names all come
+ *  from here, while every gameplay number stays identical across maps.
+ *  That is deliberate - it keeps the per-map best scores comparable.
+ *  Hazards keep their fixed cyan/orange palette on every map so a beam
+ *  always reads as a beam.
+ *
+ *  `deco` draws the mid-ground parallax band and is the main thing that
+ *  gives each map its character. Everything else is colour tokens read by
+ *  drawBackground() and drawStructure().
+ */
 
-  // far panel grid (parallax 0.25)
-  var off1 = (worldX * 0.25) % (140*S);
-  ctx.strokeStyle = 'rgba(255,255,255,0.035)';
-  ctx.lineWidth = 1;
-  ctx.beginPath();
-  for (var x = -off1; x < W + 140*S; x += 140*S){
-    ctx.moveTo(x, roof); ctx.lineTo(x, ground);
-  }
-  for (var y = roof; y < ground; y += 96*S){ ctx.moveTo(0, y); ctx.lineTo(W, y); }
-  ctx.stroke();
+/* Decor is scattered with a hash of a *world cell index*, never a screen
+   position, so a building keeps its own windows as it scrolls instead of
+   flickering into a new pattern every frame. */
+function hash01(n){
+  var x = Math.sin(n * 127.1) * 43758.5453;
+  return x - Math.floor(x);
+}
+/* Positive modulo - worldX * parallax goes negative and `%` would follow it. */
+function wrapf(v, m){ return ((v % m) + m) % m; }
 
-  // mid lamps (parallax 0.5)
-  var off2 = (worldX * 0.5) % (320*S);
+function decoLab(){
+  // ceiling lamps (parallax 0.5)
+  var off2 = wrapf(worldX * 0.5, 320*S);
   for (var lx = -off2; lx < W + 320*S; lx += 320*S){
     var lg = ctx.createRadialGradient(lx, roof + 40*S, 0, lx, roof + 40*S, 190*S);
     lg.addColorStop(0, 'rgba(255,170,90,0.17)');
@@ -1494,9 +1956,8 @@ function drawBackground(){
     ctx.fillStyle = '#ffc24a';
     rrect(lx - 11*S, roof + 9*S, 22*S, 5*S, 2.5*S); ctx.fill();
   }
-
-  // mid pipes (parallax 0.65)
-  var off3 = (worldX * 0.65) % (240*S);
+  // wall pipes (parallax 0.65)
+  var off3 = wrapf(worldX * 0.65, 240*S);
   ctx.fillStyle = 'rgba(255,255,255,0.045)';
   for (var px = -off3; px < W + 240*S; px += 240*S){
     ctx.fillRect(px, roof + 18*S, 10*S, ground - roof - 18*S);
@@ -1504,30 +1965,258 @@ function drawBackground(){
   }
 }
 
+function decoNeon(){
+  var corr = ground - roof;
+  var bands = [
+    { p:0.26, cell:200, hi:0.62, col:'#150f38', win:'rgba(120,220,255,0.42)' },
+    { p:0.44, cell:150, hi:0.46, col:'#221551', win:'rgba(255,150,220,0.46)' }
+  ];
+  for (var b = 0; b < bands.length; b++){
+    var bd = bands[b], cw = bd.cell*S;
+    var first = Math.floor(worldX*bd.p / cw);
+    var off = wrapf(worldX*bd.p, cw);
+    var n = Math.ceil(W/cw) + 2;
+    for (var i = 0; i < n; i++){
+      var k = first + i, x = i*cw - off;
+      var hgt = corr * bd.hi * (0.5 + 0.5*hash01(k*1.7 + b*31));
+      var wdt = cw * (0.5 + 0.34*hash01(k*4.3 + b*11));
+      ctx.fillStyle = bd.col;
+      ctx.fillRect(x, ground - hgt, wdt, hgt);
+      ctx.fillStyle = bd.win;
+      var rows = Math.floor((hgt - 16*S) / (17*S));
+      var cols = Math.floor((wdt - 12*S) / (15*S));
+      for (var r = 0; r < rows; r++){
+        for (var c = 0; c < cols; c++){
+          if (hash01(k*97 + r*13.3 + c*3.7 + b*7) > 0.52){
+            ctx.fillRect(x + 7*S + c*15*S, ground - hgt + 11*S + r*17*S, 6*S, 8*S);
+          }
+        }
+      }
+    }
+  }
+  // rain, drifting with the run
+  ctx.strokeStyle = 'rgba(160,205,255,0.22)';
+  ctx.lineWidth = 1.4*S;
+  ctx.beginPath();
+  for (var d = 0; d < 48; d++){
+    var rx = wrapf(hash01(d*5.1)*(W + 80*S) - animT*(300 + hash01(d*2.7)*180)*S, W + 80*S) - 40*S;
+    var ry = roof + wrapf(hash01(d*8.9)*corr + animT*820*S, corr);
+    ctx.moveTo(rx, ry); ctx.lineTo(rx - 5*S, ry + 18*S);
+  }
+  ctx.stroke();
+}
+
+function decoCryo(){
+  var corr = ground - roof;
+  // glacial light shafts
+  var off1 = wrapf(worldX*0.3, 300*S);
+  for (var gx = -off1; gx < W + 300*S; gx += 300*S){
+    var gg = ctx.createLinearGradient(gx, roof, gx, ground);
+    gg.addColorStop(0, 'rgba(150,230,255,0.11)');
+    gg.addColorStop(1, 'rgba(90,180,230,0)');
+    ctx.fillStyle = gg;
+    ctx.fillRect(gx - 60*S, roof, 120*S, corr);
+  }
+  // stalactites above, stalagmites below
+  var cw = 120*S;
+  var first = Math.floor(worldX*0.55 / cw);
+  var off = wrapf(worldX*0.55, cw);
+  var n = Math.ceil(W/cw) + 2;
+  ctx.fillStyle = 'rgba(176,226,248,0.20)';
+  ctx.beginPath();
+  for (var i = 0; i < n; i++){
+    var k = first + i, x = i*cw - off;
+    var dh = corr * (0.10 + 0.17*hash01(k*2.3));
+    var hw = cw * (0.15 + 0.10*hash01(k*5.9));
+    ctx.moveTo(x - hw, roof); ctx.lineTo(x + hw, roof); ctx.lineTo(x, roof + dh);
+    var ux = x + cw*0.5;
+    var uh = corr * (0.08 + 0.15*hash01(k*7.1 + 4));
+    var uw = cw * (0.13 + 0.10*hash01(k*3.7 + 9));
+    ctx.moveTo(ux - uw, ground); ctx.lineTo(ux + uw, ground); ctx.lineTo(ux, ground - uh);
+  }
+  ctx.fill();
+  // drifting frost
+  ctx.fillStyle = 'rgba(226,246,255,0.5)';
+  for (var d = 0; d < 36; d++){
+    var fx = wrapf(hash01(d*3.3)*(W + 60*S) - animT*(60 + hash01(d)*80)*S, W + 60*S) - 30*S;
+    var fy = roof + wrapf(hash01(d*9.7)*corr + animT*28*S, corr);
+    ctx.beginPath();
+    ctx.arc(fx, fy, (0.9 + hash01(d*6.1)*1.5)*S, 0, 6.283);
+    ctx.fill();
+  }
+}
+
+function decoMagma(){
+  var corr = ground - roof;
+  // heat rising off the floor
+  var hg = ctx.createLinearGradient(0, ground, 0, ground - corr*0.55);
+  hg.addColorStop(0, 'rgba(255,92,20,0.32)');
+  hg.addColorStop(1, 'rgba(255,92,20,0)');
+  ctx.fillStyle = hg;
+  ctx.fillRect(0, ground - corr*0.55, W, corr*0.55);
+  // basalt columns
+  var cw = 170*S;
+  var first = Math.floor(worldX*0.42 / cw);
+  var off = wrapf(worldX*0.42, cw);
+  var n = Math.ceil(W/cw) + 2;
+  for (var i = 0; i < n; i++){
+    var k = first + i, x = i*cw - off;
+    var w2 = cw*(0.26 + 0.16*hash01(k*2.9));
+    var h2 = corr*(0.42 + 0.42*hash01(k*6.3));
+    ctx.fillStyle = '#25140f';
+    ctx.fillRect(x, ground - h2, w2, h2);
+    ctx.fillStyle = 'rgba(255,120,40,0.30)';
+    ctx.fillRect(x + w2*0.42, ground - h2 + 9*S, 2.2*S, h2*0.6);
+  }
+  // lava seam along the floor
+  var lw = 90*S, loff = wrapf(worldX*0.85, lw);
+  ctx.fillStyle = 'rgba(255,150,40,0.55)';
+  for (var lx = -loff; lx < W + lw; lx += lw){
+    ctx.fillRect(lx, ground - 5*S + 4*S*Math.sin(animT*2 + lx*0.02), lw*0.7, 6*S);
+  }
+  // embers
+  for (var d = 0; d < 42; d++){
+    var ex = wrapf(hash01(d*4.7)*(W + 60*S) - animT*(110 + hash01(d*2)*130)*S, W + 60*S) - 30*S;
+    var ey = ground - wrapf(hash01(d*8.3)*corr + animT*(80 + hash01(d*3)*100)*S, corr);
+    ctx.fillStyle = 'rgba(255,' + Math.floor(120 + 90*hash01(d*5)) + ',50,'
+                  + (0.25 + 0.5*hash01(d*1.9)).toFixed(2) + ')';
+    ctx.beginPath();
+    ctx.arc(ex, ey, (1 + hash01(d*7.7)*1.8)*S, 0, 6.283);
+    ctx.fill();
+  }
+}
+
+function decoOrbit(){
+  var corr = ground - roof;
+  // starfield
+  for (var d = 0; d < 96; d++){
+    var sx = wrapf(hash01(d*1.3)*(W + 80*S) - worldX*0.12, W + 80*S) - 40*S;
+    var sy = roof + hash01(d*4.9)*corr;
+    var tw = 0.4 + 0.6*Math.abs(Math.sin(animT*1.5 + d));
+    ctx.fillStyle = 'rgba(232,240,255,' + (tw*0.85).toFixed(2) + ')';
+    ctx.fillRect(sx, sy, 1.7*S, 1.7*S);
+  }
+  // a planet on a very slow parallax
+  var pr = corr*0.42;
+  var span = W + pr*4;
+  var px = span - wrapf(worldX*0.06, span) - pr*1.2;
+  var py = roof + corr*0.46;
+  var pg = ctx.createRadialGradient(px - pr*0.3, py - pr*0.3, pr*0.1, px, py, pr);
+  pg.addColorStop(0, 'rgba(96,156,206,0.55)');
+  pg.addColorStop(0.7, 'rgba(40,70,120,0.40)');
+  pg.addColorStop(1, 'rgba(18,28,54,0.10)');
+  ctx.fillStyle = pg;
+  ctx.beginPath(); ctx.arc(px, py, pr, 0, 6.283); ctx.fill();
+  // station trusswork
+  var cw = 260*S, off = wrapf(worldX*0.58, cw);
+  ctx.strokeStyle = 'rgba(120,160,210,0.22)';
+  ctx.lineWidth = 3*S;
+  ctx.beginPath();
+  for (var x = -off; x < W + cw; x += cw){
+    ctx.moveTo(x, roof); ctx.lineTo(x, ground);
+    ctx.moveTo(x, roof + corr*0.30); ctx.lineTo(x + cw*0.42, roof + corr*0.42);
+    ctx.moveTo(x, roof + corr*0.70); ctx.lineTo(x + cw*0.42, roof + corr*0.58);
+  }
+  ctx.stroke();
+}
+
+var MAPS = [
+  { id:'lab', name:'SECTOR 7 LAB', tag:'The corridor he stole the jetpack from.',
+    wall:['#111a26','#0d141e','#0a1119'], grid:'rgba(255,255,255,0.035)',
+    slab:'#18212e', slabLip:'#0e151f', slabTop:'#212c3b',
+    rivet:'rgba(255,255,255,0.09)', plate:'rgba(255,255,255,0.05)',
+    stripe:'rgba(255,194,74,0.5)', stripeBg:'#141b26',
+    pick:'#ffc24a', deco:decoLab,
+    levels:['WARM-UP','SERVICE TUNNEL','LOWER LAB','COOLANT LINE','REACTOR ROW',
+            'TEST RANGE','BLACK SECTOR','OVERDRIVE','MELTDOWN'] },
+
+  { id:'neon', name:'NEON CITY', tag:'Rooftops, rain, and far too much signage.',
+    wall:['#241a4d','#160f33','#0b0820'], grid:'rgba(190,140,255,0.045)',
+    slab:'#1b1338', slabLip:'#0d0822', slabTop:'#2a1c56',
+    rivet:'rgba(255,140,230,0.16)', plate:'rgba(120,220,255,0.07)',
+    stripe:'rgba(255,90,200,0.55)', stripeBg:'#150d2e',
+    pick:'#ff6ad5', deco:decoNeon,
+    levels:['ROOFTOPS','NIGHT MARKET','SKYBRIDGE','NEON MILE','RAIN DISTRICT',
+            'UPPER DECK','SPIRE RUN','BLACKOUT','CITY LIMITS'] },
+
+  { id:'cryo', name:'CRYO VAULT', tag:'Cold enough that the jetpack complains.',
+    wall:['#16334a','#102638','#0a1a28'], grid:'rgba(190,240,255,0.05)',
+    slab:'#16303f', slabLip:'#0a1c28', slabTop:'#20475c',
+    rivet:'rgba(210,245,255,0.16)', plate:'rgba(190,240,255,0.07)',
+    stripe:'rgba(120,225,255,0.5)', stripeBg:'#0e2230',
+    pick:'#7fe3ff', deco:decoCryo,
+    levels:['FROST GATE','ICE SHELF','GLACIER RUN','DEEP FREEZE','CRYSTAL HALL',
+            'WHITEOUT','SHIVER RUN','ABSOLUTE ZERO','THE THAW'] },
+
+  { id:'magma', name:'MAGMA CORE', tag:'Down where the safety signs gave up.',
+    wall:['#3a1408','#240c06','#150703'], grid:'rgba(255,150,80,0.045)',
+    slab:'#2a1208', slabLip:'#160702', slabTop:'#3d1d0c',
+    rivet:'rgba(255,160,80,0.18)', plate:'rgba(255,140,60,0.07)',
+    stripe:'rgba(255,110,30,0.6)', stripeBg:'#1d0a04',
+    pick:'#ff7a2f', deco:decoMagma,
+    levels:['ASH FIELD','BASALT ROW','EMBER RUN','LAVA TUBE','FIRE SHELF',
+            'CINDER GATE','THE FORGE','ERUPTION','CORE BREACH'] },
+
+  { id:'orbit', name:'ORBITAL RING', tag:'No air, no floor, no second chances.',
+    wall:['#0d1330','#080c20','#04060f'], grid:'rgba(140,180,255,0.04)',
+    slab:'#131a33', slabLip:'#070a18', slabTop:'#1d2748',
+    rivet:'rgba(180,210,255,0.16)', plate:'rgba(150,190,255,0.06)',
+    stripe:'rgba(120,200,255,0.45)', stripeBg:'#0a0f22',
+    pick:'#8fb8ff', deco:decoOrbit,
+    levels:['DOCKING BAY','SOLAR ARRAY','LOW ORBIT','DEBRIS FIELD','DARK SIDE',
+            'ION STREAM','THE SLINGSHOT','DEEP BLACK','EVENT HORIZON'] }
+];
+
+var mapIdx = 0, MAP = MAPS[0];
+
+function drawBackground(){
+  // deep wall
+  var g = ctx.createLinearGradient(0, roof, 0, ground);
+  g.addColorStop(0, MAP.wall[0]);
+  g.addColorStop(0.5, MAP.wall[1]);
+  g.addColorStop(1, MAP.wall[2]);
+  ctx.fillStyle = g;
+  ctx.fillRect(0, 0, W, H);
+
+  // far panel grid (parallax 0.25)
+  var off1 = wrapf(worldX * 0.25, 140*S);
+  ctx.strokeStyle = MAP.grid;
+  ctx.lineWidth = 1;
+  ctx.beginPath();
+  for (var x = -off1; x < W + 140*S; x += 140*S){
+    ctx.moveTo(x, roof); ctx.lineTo(x, ground);
+  }
+  for (var y = roof; y < ground; y += 96*S){ ctx.moveTo(0, y); ctx.lineTo(W, y); }
+  ctx.stroke();
+
+  // whatever this map puts between the wall and the action
+  MAP.deco();
+}
+
 function drawStructure(){
   // ceiling slab
-  ctx.fillStyle = '#18212e';
+  ctx.fillStyle = MAP.slab;
   ctx.fillRect(0, 0, W, roof);
-  ctx.fillStyle = '#0e151f';
+  ctx.fillStyle = MAP.slabLip;
   ctx.fillRect(0, roof - 5*S, W, 5*S);
   // ceiling rivets
-  var offc = (worldX * 1) % (46*S);
-  ctx.fillStyle = 'rgba(255,255,255,0.09)';
+  var offc = wrapf(worldX, 46*S);
+  ctx.fillStyle = MAP.rivet;
   for (var cx = -offc; cx < W + 46*S; cx += 46*S){
     ctx.beginPath(); ctx.arc(cx, roof - 12*S, 2.2*S, 0, 6.283); ctx.fill();
   }
 
   // floor slab
-  ctx.fillStyle = '#18212e';
+  ctx.fillStyle = MAP.slab;
   ctx.fillRect(0, ground, W, H - ground);
-  ctx.fillStyle = '#212c3b';
+  ctx.fillStyle = MAP.slabTop;
   ctx.fillRect(0, ground, W, 6*S);
   // hazard stripes on the floor edge
-  var offg = (worldX * 1) % (40*S);
+  var offg = wrapf(worldX, 40*S);
   ctx.save();
   ctx.beginPath(); ctx.rect(0, ground + 6*S, W, 11*S); ctx.clip();
-  ctx.fillStyle = '#141b26'; ctx.fillRect(0, ground + 6*S, W, 11*S);
-  ctx.fillStyle = 'rgba(255,194,74,0.5)';
+  ctx.fillStyle = MAP.stripeBg; ctx.fillRect(0, ground + 6*S, W, 11*S);
+  ctx.fillStyle = MAP.stripe;
   for (var sx = -offg - 40*S; sx < W + 40*S; sx += 40*S){
     ctx.beginPath();
     ctx.moveTo(sx, ground + 17*S); ctx.lineTo(sx + 14*S, ground + 6*S);
@@ -1536,7 +2225,7 @@ function drawStructure(){
   }
   ctx.restore();
   // floor plates
-  ctx.strokeStyle = 'rgba(255,255,255,0.05)'; ctx.lineWidth = 1;
+  ctx.strokeStyle = MAP.plate; ctx.lineWidth = 1;
   ctx.beginPath();
   for (var fx = -offg; fx < W + 40*S; fx += 80*S){ ctx.moveTo(fx, ground + 18*S); ctx.lineTo(fx, H); }
   ctx.stroke();
@@ -2016,7 +2705,10 @@ function press(){
 function release(){ thrusting = false; setThrustLevel(0); }
 
 wrap.addEventListener('pointerdown', function(e){
-  if (e.target.closest('button')) return;
+  /* Buttons and the name field own their own clicks - without this, tapping
+     the input would read as tap-to-launch. */
+  if (e.target.closest('button, input, label, .namerow')) return;
+  if (!boardScreen.hidden) return;          // the board is a screen, not a launchpad
   if (state === MENU || state === DEAD){ startGame(); return; }
   press();
 });
@@ -2026,6 +2718,26 @@ window.addEventListener('blur', release);
 wrap.addEventListener('contextmenu', function(e){ e.preventDefault(); });
 
 window.addEventListener('keydown', function(e){
+  /* While the name field has focus the keyboard belongs to it: Space types a
+     space, Enter launches, and nothing reaches the jetpack. */
+  if (e.target === nameInput){
+    if (e.code === 'Enter'){ e.preventDefault(); nameInput.blur(); startGame(); }
+    return;
+  }
+  if (e.target === lbName){
+    if (e.code === 'Enter'){ e.preventDefault(); saveLbName(); }
+    return;
+  }
+  if (!boardScreen.hidden){
+    if (e.code === 'Escape'){ e.preventDefault(); closeBoard(); }
+    return;
+  }
+  if (state === MENU && (e.code === 'ArrowLeft' || e.code === 'ArrowRight')){
+    e.preventDefault();
+    var step = e.code === 'ArrowLeft' ? -1 : 1;
+    selectMap((mapIdx + step + MAPS.length) % MAPS.length);
+    return;
+  }
   if (e.code === 'Space' || e.code === 'ArrowUp'){
     e.preventDefault();
     if (state === MENU || state === DEAD){ startGame(); return; }
@@ -2038,6 +2750,16 @@ window.addEventListener('keyup', function(e){
 
 playBtn.addEventListener('click', function(e){ e.stopPropagation(); startGame(); });
 againBtn.addEventListener('click', function(e){ e.stopPropagation(); startGame(); });
+mapBtn.addEventListener('click', function(e){ e.stopPropagation(); toMenu(); });
+boardBtn.addEventListener('click',  function(e){ e.stopPropagation(); openBoard(); });
+boardBtn2.addEventListener('click', function(e){ e.stopPropagation(); openBoard(); });
+boardBack.addEventListener('click', function(e){ e.stopPropagation(); closeBoard(); });
+lbSaveBtn.addEventListener('click', function(e){ e.stopPropagation(); saveLbName(); });
+nameInput.addEventListener('input', syncName);
+nameInput.addEventListener('change', function(){
+  nameInput.value = cleanName(nameInput.value);
+  syncName();
+});
 muteBtn.addEventListener('click', function(e){
   e.stopPropagation(); muted = !muted; applyMute();
 });
@@ -2073,16 +2795,44 @@ function boot(){
   resize();
   applyMute();
   applyMusic();
-  hBest.textContent = best;
+  /* One-time migrations. Before the maps existed there was a single best
+     score, set in the lab; before the board existed each map kept one number.
+     Both are folded into the leaderboard so nobody loses a record. */
+  var legacy = lsGet('ananthRush.best');
+  if (legacy && !lsGet(bestKey('lab'))) lsSet(bestKey('lab'), legacy);
+  for (var mi = 0; mi < MAPS.length; mi++){
+    var mid = MAPS[mi].id;
+    var old = parseInt(lsGet(bestKey(mid)) || '0', 10) || 0;
+    if (old > 0 && !lbGet(mid).length){
+      lbSet(mid, [{ n: lsGet(byKey(mid)) || 'ANANTH', m: old, c: 0, t: 0 }]);
+    }
+  }
+  nameInput.value = cleanName(lsGet('ananthRush.name'));
+  syncName();
+  var savedMap = lsGet('ananthRush.map');
+  var start = 0;
+  for (var i = 0; i < MAPS.length; i++){ if (MAPS[i].id === savedMap) start = i; }
+  selectMap(start);
   drawAvatar();
   player.y = ground - SPR_FOOT*S;
   requestAnimationFrame(frame);
 }
 
 if (window.claude && window.claude.hot && window.claude.hot.ready){
-  window.claude.hot.snapshot(function(){ return { best: best }; });
+  window.claude.hot.snapshot(function(){
+    var out = {};
+    for (var i = 0; i < MAPS.length; i++) out[MAPS[i].id] = lbGet(MAPS[i].id);
+    return { boards: out, name: lsGet('ananthRush.name') || '' };
+  });
   window.claude.hot.ready(function(data){
-    if (data && typeof data.best === 'number' && data.best > best) best = data.best;
+    if (data && data.boards){
+      for (var id in data.boards){
+        if (data.boards[id] && data.boards[id].length && !lbGet(id).length){
+          lbSet(id, data.boards[id]);
+        }
+      }
+    }
+    if (data && data.name && !lsGet('ananthRush.name')) lsSet('ananthRush.name', data.name);
     boot();
   });
 } else {
