@@ -23,7 +23,8 @@ the missiles, and collect bolts.
 - **Leaderboard** — a top ten per map, kept in the browser's local storage. Any run
   that makes the cut is recorded straight away, and the crash card invites you to
   name it. Nothing leaves the device, so the board is per-browser.
-- **Power-ups** — Shield (earned with 30 bolts, 15 seconds of flying through anything),
+- **Power-ups** — Shield (earned with bolts you fly into, and each one in a run costs
+  more than the last, so a good run cannot chain them into permanent invulnerability),
   Magnet (pulls every coin on screen), 2x Bolts, and Slip-Mo (slows the world down).
 - **Seven original soundtracks** — five that swap as the levels climb, plus two that take
   over while a power-up is running. All generated live in the browser; no audio files.

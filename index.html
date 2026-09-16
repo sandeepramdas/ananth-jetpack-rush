@@ -1072,10 +1072,23 @@ var SPR_TOP = 0.4826;          // centre -> image top, as a fraction of height
 var SPR_FOOT = 0.4614*SPR_H;   // centre -> soles
 var SPR_HEAD = 0.4626*SPR_H;   // centre -> top of the hair
 var combo = 0, comboT = 0, coinPop = 0, goldPulse = 0;
-/* Shields are earned, not found: every SHIELD_COST bolts drops one into the
-   player's path. Picking it up gives SHIELD_TIME seconds of pass-through,
-   and a second pickup stacks onto whatever is left. */
-var SHIELD_COST = 30, SHIELD_TIME = 15;
+/* Shields are earned, not found: collect enough bolts and one drops into the
+   player's path. Picking it up gives SHIELD_TIME seconds of pass-through, and
+   a second pickup refreshes that back to full rather than extending it.
+ *
+ *  The cost is deliberately measured in bolts *flown into*, not in score:
+ *  - 2x Bolts doubles the score, not the shield. Counting the multiplied
+ *    value here used to halve the real cost whenever it was running.
+ *  - The magnet sweeps wider than the screen, so coins it drags in are worth
+ *    MAGNET_CREDIT of a step instead of a full one. Flying the coin line still
+ *    pays double what hoovering it does.
+ *  - Nothing accrues while a shield is queued or already running, so a shield
+ *    cannot pay for its own successor.
+ *  Each shield in a run also costs SHIELD_STEP more than the last, which is
+ *  what stops a good run from turning into permanent invulnerability.
+ *  Tune the feel with these three numbers alone. */
+var SHIELD_COST = 45, SHIELD_STEP = 20, SHIELD_TIME = 15;
+var MAGNET_CREDIT = 0.5;
 
 /* Power-ups. Shield is earned with bolts; the rest drop on a timer that opens
    up as the levels climb. Each one refreshes to its full duration rather than
@@ -1099,7 +1112,8 @@ function levelForMeters(m){
   return n;
 }
 function levelTitle(n){ var t = MAP.levels; return t[Math.min(n, t.length-1)]; }
-var bolts2shield = 0, shieldQueued = false;
+var bolts2shield = 0, shieldQueued = false, shieldsTaken = 0;
+function shieldCost(){ return SHIELD_COST + SHIELD_STEP * shieldsTaken; }
 var popups = [];
 var coins = [], zappers = [], missiles = [], warns = [], shields = [], parts = [];
 var meters = 0, coinCount = 0, worldX = 0, speed = 0;
@@ -1129,7 +1143,7 @@ function reset(){
   player.y = ground - SPR_FOOT*S - 60*S;
   player.vy = 0; player.tilt = 0; player.inv = 0; player.zap = 0;
   player.shieldT = 0; player.magnetT = 0; player.dblT = 0; player.slowT = 0;
-  player.onGround = false; bolts2shield = 0; shieldQueued = false;
+  player.onGround = false; bolts2shield = 0; shieldQueued = false; shieldsTaken = 0;
   level = 0; levelFlash = 0; levelTrackMsg = ''; powerTimer = 9;
   trackIdx = 0; pendingTrack = 0; levelTrack = 0;
   speed = 330 * S;
@@ -1718,12 +1732,15 @@ function update(dt){
         coins.splice(i,1);
         var worth = player.dblT > 0 ? 2 : 1;
         coinCount += worth; combo++; comboT = 1.6; coinPop = 1;
-        bolts2shield += worth;
-        if (bolts2shield >= SHIELD_COST && !shieldQueued){
-          bolts2shield = 0; shieldQueued = true;
-          popup(player.x, player.y - 58*S, 'SHIELD EARNED!', '#7ef0ff', 1.4);
-          blip(420, 1180, 0.34, 'triangle', 0.15);
-          goldPulse = Math.max(goldPulse, 0.7);
+        /* Shield progress ignores `worth` on purpose - see SHIELD_COST. */
+        if (!shieldQueued && player.shieldT <= 0){
+          bolts2shield += magnetOn ? MAGNET_CREDIT : 1;
+          if (bolts2shield >= shieldCost()){
+            bolts2shield = 0; shieldQueued = true; shieldsTaken++;
+            popup(player.x, player.y - 58*S, 'SHIELD EARNED!', '#7ef0ff', 1.4);
+            blip(420, 1180, 0.34, 'triangle', 0.15);
+            goldPulse = Math.max(goldPulse, 0.7);
+          }
         }
         sfxCoin(combo);
         sparkle(c.x, c.y);
@@ -1898,7 +1915,7 @@ function update(dt){
     hShield.className = 'chip shield';
   } else {
     if (hShield.hidden) hShield.hidden = false;
-    hShield.textContent = (SHIELD_COST - bolts2shield) + ' TO SHIELD';
+    hShield.textContent = Math.ceil(shieldCost() - bolts2shield) + ' TO SHIELD';
     hShield.className = 'chip shield dim';
   }
 }
